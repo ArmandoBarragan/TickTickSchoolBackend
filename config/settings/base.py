@@ -1,30 +1,12 @@
-# Python imports
 from pathlib import Path
-import os
-# Project imports
-from config.settings import local as local_settings
-from config.settings import production as production_settings
 
 
 BASE_DIR = Path(__file__).resolve().parent.parent
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = os.getenv('DEBUG')
 
-if DEBUG is None:
-    DEBUG = False
+APPS_DIR = BASE_DIR / "tick_tick_school"
 
-# Decide state of the project
-if DEBUG:
-    settings = local_settings
-else:
-    settings = production_settings
-
-
-SECRET_KEY = settings.SECRET_KEY
-
-ALLOWED_HOSTS = local_settings.ALLOWED_HOSTS
-WHITELIST = settings.WHITELIST
 
 # Apps
 PROJECT_APPS = [
@@ -81,12 +63,6 @@ TEMPLATES = [
 WSGI_APPLICATION = 'config.wsgi.application'
 
 
-# Database
-# https://docs.djangoproject.com/en/4.0/ref/settings/#databases
-
-DATABASES = settings.DATABASES
-
-
 # Password validation
 # https://docs.djangoproject.com/en/4.0/ref/settings/#auth-password-validators
 
@@ -106,24 +82,7 @@ AUTH_PASSWORD_VALIDATORS = [
 ]
 
 
-# Internationalization
-# https://docs.djangoproject.com/en/4.0/topics/i18n/
-
-LANGUAGE_CODE = 'en-us'
-
-TIME_ZONE = 'UTC'
-
-USE_I18N = True
-
-USE_TZ = True
-
-
-# Static files (CSS, JavaScript, Images)
-# https://docs.djangoproject.com/en/4.0/howto/static-files/
-
 STATIC_URL = 'static/'
 
-# Default primary key field type
-# https://docs.djangoproject.com/en/4.0/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'

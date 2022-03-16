@@ -3,6 +3,8 @@ services:
     build:
       context: .
       dockerfile: ./compose/local/Dockerfile
+    command: python manage.py migrate && 
+             python manage.py runserver
     expose:
       - 8000
     restart: "always"

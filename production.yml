@@ -1,0 +1,24 @@
+services:
+  app:
+    build:
+      context: .
+      dockerfile: ./compose/local/Dockerfile
+    command: python manage.py runserver
+    expose:
+      - 8000
+    restart: "always"
+    depends_on:
+      - db
+    links:
+      - db:db
+
+  nginx:
+    build:
+      context: ./compose/nginx
+      dockerfile: ./compose/nginx/Dockerfile
+    ports:
+      - 8000:8000
+  db:
+    image: postgres
+    volumes:
+      - ./data/db:/var/lib/postgresql/data

@@ -1,10 +1,6 @@
-from pathlib import Path
+from config.settings.base import *
 
-BASE_DIR = Path(__file__).resolve().parent.parent
-
-SECRET_KEY = 'django-insecure-sr9a8h!8a)cb1-l()xg__y*&^ids@u=5myn%-y+8w^a#(s9g4&'
-
-ALLOWED_HOSTS = ['localhost', '0.0.0.0', '127.0.0.1']
+SECRET_KEY = '-m%z0q$46ii!)3ms7pzb59*kh=6$co7wsq^h%93r%qpnd&+^-w'
 
 DATABASES = {
     'default': {
@@ -12,3 +8,12 @@ DATABASES = {
         'NAME': BASE_DIR / 'db.sqlite3',
     }
 }
+
+LANGUAGE_CODE = 'es'
+TIME_ZONE = 'America/Chihuahua'
+USE_I18N = True
+USE_L10N = True
+USE_TZ = True
+
+DEBUG = True
+ALLOWED_HOSTS = ["*"]

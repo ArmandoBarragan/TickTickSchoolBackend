@@ -1,4 +1,5 @@
 import os
+from config.settings.base import *
 
 SECRET_KEY = os.getenv('SECRET_KEY')
 
@@ -17,3 +18,11 @@ DATABASES = {
         'PORT': os.getenv('DB_PORT'),
     }
 }
+
+LANGUAGE_CODE = 'es'
+TIME_ZONE = os.getenv('TIMEZONE')
+USE_I18N = os.getenv('USE_I18N')
+USE_L10N = os.getenv('USE_L10N')
+USE_TZ = os.getenv('USE_TZ')
+
+DEBUG = True
