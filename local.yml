@@ -1,0 +1,12 @@
+services:
+  app:
+    build:
+      context: .
+      dockerfile: ./compose/local/Dockerfile
+    expose:
+      - 8000
+    restart: "always"
+    depends_on:
+      - db
+    links:
+      - db:db
