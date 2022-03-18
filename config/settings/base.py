@@ -1,17 +1,17 @@
 from pathlib import Path
 
 
-BASE_DIR = Path(__file__).resolve().parent.parent
+BASE_DIR = Path(__file__).resolve().parent.parent.parent
 
 # SECURITY WARNING: don't run with debug turned on in production!
 
 APPS_DIR = BASE_DIR / "tick_tick_school"
 
-
 # Apps
 PROJECT_APPS = [
-    'tick_tick_school.users.apps.TasksAppConfig',
-    'tick_tick_schoool.tasks.apps.UsersAppConfig'
+    'tick_tick_school.users.apps.UsersAppConfig',
+    'tick_tick_school.tasks.apps.TasksAppConfig',
+    'tick_tick_school.subjects.apps.SubjectsAppConfig'
 ]
 
 THIRD_PARTY_APPS = [
@@ -86,3 +86,5 @@ STATIC_URL = 'static/'
 
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+AUTH_USER_MODEL = 'users.User'
