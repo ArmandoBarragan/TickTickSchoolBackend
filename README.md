@@ -15,6 +15,9 @@
     </div></li>
 </ul>
 
+
+<h2>API usage</h2>
+<p></p>
 <h2>Local installation</h2>
 <p>To have this project installed for development purposes, it is necessary to
 first install docker and docker compose. To do so, you can follow the given documentation:</p>

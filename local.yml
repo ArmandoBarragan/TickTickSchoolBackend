@@ -1,4 +1,4 @@
-version: "2"
+version: "3.3"
 
 services:
   app:
@@ -8,10 +8,6 @@ services:
     environment:
       - DJANGO_SETTINGS_MODULE=config.settings.local
     command: python3 manage.py runserver
-    volumes:
-      - .:/code
-    expose:
-      - "8000"
     ports:
       - "8000:8000"
     restart: "always"

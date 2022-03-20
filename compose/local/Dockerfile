@@ -5,7 +5,11 @@ ENV PYTHONBUFFERED=1
 
 WORKDIR /code
 
-COPY requirements/local.txt ./requirements.txt
+COPY requirements/local.txt requirements.txt
+RUN pip install --upgrade pip
 RUN pip install -r requirements.txt
 
-COPY . /code
+COPY . /code/
+
+RUN python3 manage.py migrate
+
