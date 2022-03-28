@@ -37,13 +37,11 @@ class UserViewSet(ModelViewSet):
         serializer = UserCreationSerializer(data=request.data)
 
         serializer.is_valid(raise_exception=True)
-        import pdb; pdb.set_trace()
-        user, token = serializer.create()
-        serialized_user = UserSerializer(user)
-        json_response = {
-            'user': serialized_user,
+        user, token = serializer.create(serializer.validated_data)
+        data = ({
+            'user': UserSerializer(user).data,
             'token': token
-        }
-        return Response(json.dumps(json_response), status=status.HTTP_201_CREATED)
+        })
+        return Response(data, status=status.HTTP_201_CREATED)
 
 

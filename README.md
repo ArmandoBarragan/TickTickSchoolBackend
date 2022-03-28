@@ -17,7 +17,21 @@
 
 
 <h2>API usage</h2>
-<p></p>
+<p>Models of the database are, at the moment, User, Task and Subject.
+A neither a task or a subject can be created without any
+users, so you need to create a few to test them.</p>
+<p>You can call the api in local with the address <code>localhost:8000</code>
+and use the following urls:</p>
+<ul>
+<li>Users:
+    <ul>
+    <li>users/signup/ to create a new user.</li>
+    <li>api-token-auth</li>
+    <li>users/{{pk}} to get a user's email, firstname and lastnames</li>
+    <li>users/</li>
+</ul>
+</li>
+</ul>
 <h2>Local installation</h2>
 <p>To have this project installed for development purposes, it is necessary to
 first install docker and docker compose. To do so, you can follow the given documentation:</p>

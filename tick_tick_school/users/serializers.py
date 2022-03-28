@@ -52,8 +52,8 @@ class UserCreationSerializer(serializers.ModelSerializer):
     def create(self, validated_data):
         validated_data.pop('password_confirmation')
         user = User.objects.create_user(**validated_data)
-        token = Token.objects.get_or_create(user=user)
-        return user, token.key
+        token = Token.objects.get_or_create(user=user)[0].key
+        return user, token
 
 
 class UserLoginSerializer(serializers.ModelSerializer):
@@ -63,4 +63,5 @@ class UserLoginSerializer(serializers.ModelSerializer):
             'email',
             'password'
         ]
+
 
