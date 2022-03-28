@@ -1,13 +1,16 @@
 from __future__ import unicode_literals
 
+# DRF imports
 from django.db import models
 from django.core.mail import send_mail
 from django.contrib.auth.models import PermissionsMixin
 from django.contrib.auth.base_user import AbstractBaseUser
 
+# Project import
 from .managers import UserManager
 
 
+# Models
 class User(AbstractBaseUser, PermissionsMixin):
     email = models.EmailField('email', unique=True)
     first_name = models.CharField('nombres', max_length=30, blank=True)
