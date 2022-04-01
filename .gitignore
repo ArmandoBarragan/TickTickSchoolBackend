@@ -53,3 +53,5 @@ celerybeat.pid
 # Spyder project settings
 .spyderproject
 .spyproject
+
+.sqlite3
