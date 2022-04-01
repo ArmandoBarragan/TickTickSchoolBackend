@@ -19,7 +19,11 @@ class UserSerializer(serializers.ModelSerializer):
             'email',
             'first_name',
             'last_name',
+            'pk'
         ]
+        extra_kwargs = {
+            'pk': {'readonly': True}
+        }
 
 
 class UserCreationSerializer(serializers.ModelSerializer):
@@ -32,7 +36,8 @@ class UserCreationSerializer(serializers.ModelSerializer):
             'first_name',
             'last_name',
             'password',
-            'password_confirmation'
+            'password_confirmation',
+            'pk'
         ]
 
         extra_kwargs = {
@@ -40,7 +45,8 @@ class UserCreationSerializer(serializers.ModelSerializer):
                 UniqueValidator(
                     queryset=User.objects.all(),
                 )
-            ]}
+            ]},
+            'pk': {'readonly': True}
         }
 
     def validate(self, data):

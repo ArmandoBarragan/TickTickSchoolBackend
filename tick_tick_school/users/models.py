@@ -17,6 +17,8 @@ class User(AbstractBaseUser, PermissionsMixin):
     last_name = models.CharField('apellidos', max_length=30, blank=True)
     date_joined = models.DateTimeField('fecha de registro', auto_now_add=True)
 
+    is_staff = models.BooleanField(default=False, blank=True)
+    is_superuser = models.BooleanField(default=False, blank=True)
     objects = UserManager()
 
     USERNAME_FIELD = 'email'

@@ -26,12 +26,35 @@ and use the following urls:</p>
 <li>Users:
     <ul>
     <li>users/signup/ to create a new user.</li>
-    <li>api-token-auth</li>
+    <p>Parameters: email, password, password_confirmation, first_name, last_name</p>
+    <li>api-token-auth to get the user's token.</li>
+    <p>Parameters: Email and password</p>
     <li>users/{{pk}} to get a user's email, firstname and lastnames</li>
-    <li>users/</li>
+    <li>users/ This does not work. It's only for staff, which has not been planned as a functionality yet.</li>
 </ul>
 </li>
+<li>
+    Subjects:
+    <ul>
+    <li>POST subjects/</li>
+    Parameters: (Being * a required param) name*, student*, teacher, classroom
+    <li>GET subjects/ returns name, student, teacher, classroom.</li>
+    </ul>
+</li>
+<li>
+    Tasks:
+    <ul>
+    <li>POST tasks/</li>
+    Parameters: student*, name*, subject*, description, status.
+    If a status is not sent, it's set as 'pendiente' as default.
+    </ul>
+</li>
 </ul>
+
+<h3>Authorization</h3>
+<p>The project works with token authorization, so for each request it is necessary to set 'Authorization: Token {{token}}'
+in it's header.
+</p>
 <h2>Local installation</h2>
 <p>To have this project installed for development purposes, it is necessary to
 first install docker and docker compose. To do so, you can follow the given documentation:</p>
@@ -47,7 +70,6 @@ manage.py runserver</code>. If you opt for the container option, you will probab
 every session so that you don't have to write <code>-f local.yml</code>. You can do this by executing the following
 command: <code>export COMPOSE_FILE=local.yml</code>.
 </p>
-
 <h2>Project deployment</h2>
 <p>For deployment it is as necessary to have docker and docker compose installed as it is needed on development.
 You, as well, need to cd your way into the root of the project. Environment variables have to be changed

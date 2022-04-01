@@ -3,7 +3,7 @@ from rest_framework.response import Response
 
 # DRF imports
 from rest_framework.viewsets import ModelViewSet
-from rest_framework.permissions import IsAuthenticated, AllowAny
+from rest_framework.permissions import IsAuthenticated, AllowAny, IsAdminUser
 from rest_framework.decorators import action
 from rest_framework import status
 
@@ -12,7 +12,6 @@ from .models import User
 from .serializers import UserSerializer, UserCreationSerializer, UserLoginSerializer
 
 
-# Views
 class UserViewSet(ModelViewSet):
     queryset = User.objects.all()
     serializer_class = UserSerializer
@@ -22,15 +21,11 @@ class UserViewSet(ModelViewSet):
         """Assign permissions based on action."""
         if self.action in ['signup', 'login']:
             permissions = [AllowAny]
-        elif self.action in ['retrieve', 'update', 'partial_update', 'profile']:
+        elif self.action in ['update', 'partial_update', 'profile']:
             permissions = [IsAuthenticated]  # TODO check usefulness of IsAccountOwner for this use case
         else:
-            permissions = [IsAuthenticated]
+            permissions = [IsAdminUser]
         return [p() for p in permissions]
-
-    @action(detail=False, methods=['post'])
-    def login(self, request):
-        pass
 
     @action(detail=False, methods=['post'])
     def signup(self, request):

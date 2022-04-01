@@ -5,4 +5,9 @@ from .models import Subject
 class SubjectSerializer(ModelSerializer):
     class Meta:
         model = Subject
-        fields = '__all__'
+        fields = ['name', 'teacher', 'student', 'classroom', 'pk']
+        extra_kwargs = {
+            'teacher': {'required': False},
+            'classroom': {'required': False},
+            'pk': {'readonly': True}
+        }
