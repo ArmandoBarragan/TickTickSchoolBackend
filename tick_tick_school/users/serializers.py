@@ -69,5 +69,5 @@ class UserLoginSerializer(serializers.ModelSerializer):
             'email',
             'password'
         ]
-
+    # TODO create validate method
 

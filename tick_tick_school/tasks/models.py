@@ -13,7 +13,6 @@ class Task(models.Model):
     student = models.ForeignKey('users.User', on_delete=models.CASCADE, null=False)
     subject = models.ForeignKey('subjects.Subject', on_delete=models.SET_NULL, null=True, blank=True)
     status = models.CharField(max_length=100, choices=STATUS_LIST, default='pe', blank=True),
-    deadline = models.DateTimeField()
 
     def __str__(self):
-        return '{} of s'.format(self.name, self.student)
+        return '{} of {}'.format(self.name, self.student)

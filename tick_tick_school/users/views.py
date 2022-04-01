@@ -6,6 +6,7 @@ from rest_framework.viewsets import ModelViewSet
 from rest_framework.permissions import IsAuthenticated, AllowAny, IsAdminUser
 from rest_framework.decorators import action
 from rest_framework import status
+from rest_framework.authtoken.models import Token
 
 # Project imports
 from .models import User
@@ -26,6 +27,21 @@ class UserViewSet(ModelViewSet):
         else:
             permissions = [IsAdminUser]
         return [p() for p in permissions]
+
+    @action(detail=False, methods=['POST'])
+    def signup(self, request):
+        serializer = UserLoginSerializer(data=request.data)
+        if serializer.is_valid():
+            email = serializer.validated_data.email
+            user = User.objects.get(email=email)
+            token = Token.objects.get_or_create(user=user)[0].key
+            data = {
+                'user_pk': user.pk,
+                'token': token
+            }
+            return Response()
+        else:
+            return Response(status=status.HTTP_400_BAD_REQUEST)
 
     @action(detail=False, methods=['post'])
     def signup(self, request):
