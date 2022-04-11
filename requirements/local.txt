@@ -5,3 +5,4 @@ djangorestframework==3.13.1
 httpie==3.1.0
 pytest-django
 celery
+psycopg2
