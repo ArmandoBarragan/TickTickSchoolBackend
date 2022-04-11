@@ -5,9 +5,7 @@ from .models import Subject
 class SubjectSerializer(ModelSerializer):
     class Meta:
         model = Subject
-        fields = ['name', 'teacher', 'student', 'classroom', 'pk']
+        fields = ['name', 'teacher', 'student', 'classroom', 'id']
         extra_kwargs = {
-            'teacher': {'required': False},
-            'classroom': {'required': False},
-            'pk': {'readonly': True}
+            'id': {'read_only': True}
         }

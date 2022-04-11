@@ -13,11 +13,13 @@ from .models import User
 from .serializers import UserSerializer, UserCreationSerializer, UserLoginSerializer
 
 
+# User views
 class UserViewSet(ModelViewSet):
     queryset = User.objects.all()
     serializer_class = UserSerializer
     permission_classes = [IsAuthenticated]
 
+    # User's possible permissions
     def get_permissions(self):
         """Assign permissions based on action."""
         if self.action in ['signup', 'login']:
@@ -25,25 +27,26 @@ class UserViewSet(ModelViewSet):
         elif self.action in ['update', 'partial_update', 'profile']:
             permissions = [IsAuthenticated]  # TODO check usefulness of IsAccountOwner for this use case
         else:
-            permissions = [IsAdminUser]
+            permissions = [IsAdminUser]  # This permission is not used yet. We will see in the future
         return [p() for p in permissions]
 
+    # Login method
     @action(detail=False, methods=['POST'])
-    def signup(self, request):
+    def login(self, request):
         serializer = UserLoginSerializer(data=request.data)
         if serializer.is_valid():
-            email = serializer.validated_data.email
+            import pdb; pdb.set_trace()
+            email = serializer.validated_data['email']
             user = User.objects.get(email=email)
             token = Token.objects.get_or_create(user=user)[0].key
-            data = {
-                'user_pk': user.pk,
-                'token': token
-            }
-            return Response()
+
+            data = {'token': token}
+            return Response(data, status=status.HTTP_200_OK)
         else:
             return Response(status=status.HTTP_400_BAD_REQUEST)
 
-    @action(detail=False, methods=['post'])
+    # Sign up method
+    @action(detail=False, methods=['POST'])
     def signup(self, request):
         serializer = UserCreationSerializer(data=request.data)
 

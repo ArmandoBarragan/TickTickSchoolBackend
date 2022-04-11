@@ -19,10 +19,10 @@ class UserSerializer(serializers.ModelSerializer):
             'email',
             'first_name',
             'last_name',
-            'pk'
+            'id'
         ]
         extra_kwargs = {
-            'pk': {'readonly': True}
+            'id': {'read_only': True}
         }
 
 
@@ -37,7 +37,6 @@ class UserCreationSerializer(serializers.ModelSerializer):
             'last_name',
             'password',
             'password_confirmation',
-            'pk'
         ]
 
         extra_kwargs = {
@@ -46,7 +45,6 @@ class UserCreationSerializer(serializers.ModelSerializer):
                     queryset=User.objects.all(),
                 )
             ]},
-            'pk': {'readonly': True}
         }
 
     def validate(self, data):
@@ -70,4 +68,3 @@ class UserLoginSerializer(serializers.ModelSerializer):
             'password'
         ]
     # TODO create validate method
-

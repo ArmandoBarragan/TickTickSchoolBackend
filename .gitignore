@@ -55,3 +55,5 @@ celerybeat.pid
 .spyproject
 
 .sqlite3
+
+data/

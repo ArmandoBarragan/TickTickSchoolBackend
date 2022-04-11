@@ -2,7 +2,7 @@
 <h2>Project contributers</h2>
 <ul>
     <li><div>
-        <span>Armando Brragán Pacheco.</span><br/>
+        <span>Armando Barragán Pacheco.</span><br/>
         <span><strong>Role:</strong> Backend developer, software architect.</span><br/>
         <span><strong>Email:</strong> armandobp765@gmail.com</span><br/>
         <span><strong>Github user:</strong> ArmandoBarragan</span><br/>
@@ -13,12 +13,18 @@
             <span><strong>Email:</strong> pavelmontes22@gmail.com</span><br/>
             <span><strong>Github user:</strong> montesp</span><br/>
     </div></li>
+    <li><div>
+            <span>Angel Vargas Casavantes.</span><br/>
+            <span><strong>Role:</strong> Frontend developer.</span><br/>
+            <span><strong>Email:</strong> vcangel00@gmail.com</span><br/>
+            <span><strong>Github user:</strong> VCAngel</span><br/>
+    </div></li>
 </ul>
 
 
 <h2>API usage</h2>
 <p>Models of the database are, at the moment, User, Task and Subject.
-A neither a task or a subject can be created without any
+A neither a task nor a subject can be created without any
 users, so you need to create a few to test them.</p>
 <p>You can call the api in local with the address <code>localhost:8000</code>
 and use the following urls:</p>
@@ -28,7 +34,8 @@ and use the following urls:</p>
     <li>users/signup/ to create a new user.</li>
     <p>Parameters: email, password, password_confirmation, first_name, last_name</p>
     <li>api-token-auth to get the user's token.</li>
-    <p>Parameters: Email and password</p>
+    <p>Parameters: Username and password</p>
+    <p><b>KEEP IN MIND: This URL and parameters MIGHT BE CHANGED on future updates.</b></p>
     <li>users/{{pk}} to get a user's email, firstname and lastnames</li>
     <li>users/ This does not work. It's only for staff, which has not been planned as a functionality yet.</li>
 </ul>
@@ -51,9 +58,14 @@ and use the following urls:</p>
 </li>
 </ul>
 
+<h3>Error Responses</h3>
+<ul>
+    <li>400: You didn't send the required parameters for the post method</li>
+    <li>500: Server error. If this happens, please send feedback with a screenshot of the request and response.</li>
+</ul>
 <h3>Authorization</h3>
 <p>The project works with token authorization, so for each request it is necessary to set 'Authorization: Token {{token}}'
-in it's header.
+in it's header, except for the login and signup urls.
 </p>
 <h2>Local installation</h2>
 <p>To have this project installed for development purposes, it is necessary to

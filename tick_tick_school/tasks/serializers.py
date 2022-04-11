@@ -5,9 +5,9 @@ from .models import Task
 class TaskSerializer(ModelSerializer):
     class Meta:
         model = Task
-        fields = ['name', 'description', 'student', 'subject', 'status', 'pk']
+        fields = ['name', 'description', 'student', 'subject', 'status', 'id']
         extra_kwargs = {
             'description': {'required': False},
             'status': {'required': False},
-            'pk': {'readonly': True}
+            'id': {'read_only': True}
         }

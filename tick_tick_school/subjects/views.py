@@ -15,6 +15,7 @@ class SubjectViewSet(ModelViewSet):
 
     def retrieve(self, request, pk=None, *args, **kwargs):
         user = request.user
+
         if pk is None:
             return Response(status=status.HTTP_400_BAD_REQUEST)
 
