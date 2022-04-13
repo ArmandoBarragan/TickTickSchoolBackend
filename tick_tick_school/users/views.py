@@ -50,12 +50,13 @@ class UserViewSet(ModelViewSet):
     def signup(self, request):
         serializer = UserCreationSerializer(data=request.data)
 
-        serializer.is_valid(raise_exception=True)
-        user, token = serializer.create(serializer.validated_data)
-        data = ({
-            'user': UserSerializer(user).data,
-            'token': token
-        })
-        return Response(data, status=status.HTTP_201_CREATED)
-
+        if serializer.is_valid(raise_exception=True):
+            user, token = serializer.create(serializer.validated_data)
+            data = ({
+                'user': UserSerializer(user).data,
+                'token': token
+            })
+            return Response(data, status=status.HTTP_201_CREATED)
+        else:
+            Response(status=status.HTTP_400_BAD_REQUEST)
 

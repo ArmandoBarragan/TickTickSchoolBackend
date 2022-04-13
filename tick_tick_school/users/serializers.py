@@ -49,7 +49,7 @@ class UserCreationSerializer(serializers.ModelSerializer):
 
     def validate(self, data):
         if not data['password_confirmation'] == data['password']:
-            return serializers.ValidationError('Las contraseñas no son iguales')
+            raise serializers.ValidationError('Las contraseñas no son iguales')
         validate_password(data['password'])
         return data
 
