@@ -16,23 +16,13 @@ class TaskViewSet(ModelViewSet):
 
     action_permissions = {
         IsAuthenticated: ['retrieve', 'list']
-        #  TODO Add the OwnerPermission here when it's ready
-    }
+        # TODO Add the OwnerPermission here when it's ready
+}
 
-    def list(self, request, *args, **kwargs):
-        user = request.user
-
-        if user.is_superuser:
-            tasks = TaskSerializer(Task.objects.all(), many=True)
-            return Response(tasks, status=status.HTTP_200_OK)
-
-        elif user.is_authenticated:
-            tasks = Task.objects.filter(user=user.pk)
-            serialized_tasks = TaskSerializer(tasks, many=True)
-            return Response(serialized_tasks, status=status.HTTP_200_OK)
-
-        else:
-            return Response(status=status.HTTP_401_UNAUTHORIZED)
+    def get_queryset(self):
+        user = self.request.user
+        if not user.is_authenticated:
+            return Task.objects.filter(user=user.pk)
 
     @action(detail=False,
             methods=['GET'],
