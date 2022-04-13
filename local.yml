@@ -5,6 +5,8 @@ services:
     build:
       context: .
       dockerfile: ./compose/local/Dockerfile
+    volumes:
+      - . /code/
     environment:
       - DJANGO_SETTINGS_MODULE=config.settings.local
     command: python3 manage.py runserver 0.0.0.0:8000
@@ -20,10 +22,12 @@ services:
     image: postgres:latest
     volumes:
       - ./compose/db:/docker-entrypoint-initdb.d
-      - ./data:/var/lib/postgresql/data
+      - local_postgres_data:/var/lib/postgresql/data
 
     environment:
       - POSTGRES_USER=postgres
       - POSTGRES_PASSWORD=postgres
       - POSTGRES_DB=tts_db
 
+volumes:
+  local_postgres_data: {}

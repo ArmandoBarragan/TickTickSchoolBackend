@@ -24,7 +24,7 @@ class UserViewSet(ModelViewSet):
         """Assign permissions based on action."""
         if self.action in ['signup', 'login']:
             permissions = [AllowAny]
-        elif self.action in ['update', 'partial_update', 'profile']:
+        elif self.action in ['update', 'partial_update', 'profile', 'retrieve']:
             permissions = [IsAuthenticated]  # TODO check usefulness of IsAccountOwner for this use case
         else:
             permissions = [IsAdminUser]  # This permission is not used yet. We will see in the future
