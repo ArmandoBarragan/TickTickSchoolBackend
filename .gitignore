@@ -54,7 +54,7 @@ celerybeat.pid
 .spyderproject
 .spyproject
 
-.sqlite3
+db.sqlite3
 
 data/
 local.yml
