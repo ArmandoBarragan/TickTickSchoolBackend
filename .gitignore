@@ -57,3 +57,4 @@ celerybeat.pid
 .sqlite3
 
 data/
+local.yml
