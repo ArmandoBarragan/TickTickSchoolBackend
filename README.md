@@ -61,13 +61,14 @@ and use the following urls:</p>
 <h3>Error Responses</h3>
 <ul>
     <li>400: You didn't send the required parameters for the post method</li>
+    <li>404: Element not found. If you try to log in with a wrong username, this will be the response.</li>
     <li>500: Server error. If this happens, please send feedback with a screenshot of the request and response.</li>
 </ul>
 <h3>Authorization</h3>
 <p>The project works with token authorization, so for each request it is necessary to set 'Authorization: Token {{token}}'
 in it's header, except for the login and signup urls.
 </p>
-<h2>Local installation</h2>
+<h2>Local installation for frontends</h2>
 <p>To have this project installed for development purposes, it is necessary to
 first install docker and docker compose. To do so, you can follow the given documentation:</p>
 <ul>
@@ -83,6 +84,11 @@ manage.py runserver</code>. If you opt for the container option and are gonna wo
 you will probably want to export the file variable every session so that you don't have to write <code>-f local.yml</code>. You can do this by 
 executing the following command: <code>export COMPOSE_FILE=local.yml</code>.
 </p>
+<h2>Local installation for backends</h2>
+<p>Backends can install their project with either docker-compose or directly executing <code>python3 manage.py migrate</code>
+and <code>python3 manage.py runserver</code>. They just need to change the CONTAINER_ENVIRON
+variable from the local.yml file to false to stop using docker.</p>
+
 <h2>Project deployment</h2>
 <p>For deployment it is as necessary to have docker and docker compose installed as it is needed on development.
 You, as well, need to cd your way into the root of the project. Environment variables have to be changed
