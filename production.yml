@@ -4,6 +4,8 @@ services:
       context: .
       dockerfile: ./compose/local/Dockerfile
     command: python manage.py runserver
+    volumes:
+      - .:/code/
     expose:
       - 8000
     restart: "always"

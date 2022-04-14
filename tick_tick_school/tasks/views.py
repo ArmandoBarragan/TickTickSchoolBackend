@@ -14,11 +14,6 @@ class TaskViewSet(ModelViewSet):
     serializer_class = TaskSerializer
     permission_classes = [IsAuthenticated]
 
-    action_permissions = {
-        IsAuthenticated: ['retrieve', 'list']
-        # TODO Add the OwnerPermission here when it's ready
-}
-
     def get_queryset(self):
         user = self.request.user
         if not user.is_authenticated:
@@ -27,7 +22,7 @@ class TaskViewSet(ModelViewSet):
     @action(detail=False,
             methods=['GET'],
             url_path='subjects/tasks/<int:searched_subject>')
-    def get_tasks_by_class(self, request, searched_subject, *args, **kwargs):
+    def get_tasks_by_subject(self, request, searched_subject, *args, **kwargs):
         user = request.user
         searched_subject = searched_subject
 

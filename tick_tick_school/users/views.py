@@ -19,7 +19,6 @@ class UserViewSet(ModelViewSet):
     serializer_class = UserSerializer
     permission_classes = [IsAuthenticated]
 
-    # User's possible permissions
     def get_permissions(self):
         """Assign permissions based on action."""
         if self.action in ['signup', 'login']:
@@ -35,7 +34,6 @@ class UserViewSet(ModelViewSet):
     def login(self, request):
         serializer = UserLoginSerializer(data=request.data)
         if serializer.is_valid():
-            import pdb; pdb.set_trace()
             email = serializer.validated_data['email']
             user = User.objects.get(email=email)
             token = Token.objects.get_or_create(user=user)[0].key

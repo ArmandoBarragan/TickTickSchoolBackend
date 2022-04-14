@@ -1,8 +1,6 @@
 # Drf imports
 from rest_framework.viewsets import ModelViewSet
 from rest_framework.permissions import IsAuthenticated
-from rest_framework.response import Response
-from rest_framework import status
 
 # Project imports
 from .models import Subject
