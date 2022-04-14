@@ -17,7 +17,7 @@ class TaskViewSet(ModelViewSet):
     def get_queryset(self):
         user = self.request.user
         if not user.is_authenticated:
-            return Task.objects.filter(user=user.pk)
+            return Task.objects.filter(student=user.pk)
 
     @action(detail=False,
             methods=['GET'],
