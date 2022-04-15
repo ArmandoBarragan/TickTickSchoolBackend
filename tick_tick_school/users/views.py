@@ -9,6 +9,7 @@ from rest_framework import status
 from rest_framework.authtoken.models import Token
 
 # Project imports
+from tick_tick_school.utils.permissions import OwnerPermission
 from .models import User
 from .serializers import UserSerializer, UserCreationSerializer, UserLoginSerializer
 
@@ -24,7 +25,7 @@ class UserViewSet(ModelViewSet):
         if self.action in ['signup', 'login']:
             permissions = [AllowAny]
         elif self.action in ['update', 'partial_update', 'profile']:
-            permissions = [IsAuthenticated]  # TODO check usefulness of IsAccountOwner for this use case
+            permissions = [OwnerPermission]  # TODO check usefulness of IsAccountOwner for this use case
         else:
             permissions = [IsAdminUser]  # This permission is not used yet. We will see in the future
         return [p() for p in permissions]

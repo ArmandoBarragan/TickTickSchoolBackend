@@ -7,7 +7,7 @@ from django.contrib.auth.models import PermissionsMixin
 from django.contrib.auth.base_user import AbstractBaseUser
 
 # Project import
-from .managers import UserManager
+from tick_tick_school.utils.managers import UserManager
 
 
 # Models
