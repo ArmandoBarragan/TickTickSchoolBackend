@@ -14,22 +14,32 @@ def get_pk_from_path(path):
     path = path.replace('/', '')
     for url in urls:
         path = path.replace(url, '')
+    import pdb; pdb.set_trace()
     return int(path)
 
 
 class OwnerPermission(BasePermission):
+    """ Permission that declares how only the creator of a db register has access to that same register."""
+
     def has_permission(self, request, view):
-        token = request.headers['Authorization'].replace('Token: ', '')
+        token = request.headers.get('Authorization', None)
         if token:
+            token = token.replace('Token ', '')
+        else:
+            return False
+
+        try:
             user = Token.objects.get(key=token).user
-            pk = get_pk_from_path(request.path)
-            model = view.serializer_class.Meta.model
-            instance = get_object_or_404(model, pk=pk)
-            import pdb; pdb.set_trace()
+        except Token.DoesNotExist:
+            return False
 
-            if model == User:
-                permission = True if instance.pk == user.pk else False
-            else:
-                permission = True if instance.student.pk == user.pk else False
+        pk = get_pk_from_path(request.path)
+        model = view.serializer_class.Meta.model
+        instance = get_object_or_404(model, pk=pk)
 
-            return permission
+        if model == User:
+            has_permission = True if instance.pk == user.pk else False
+        else:
+            has_permission = True if instance.student.pk == user.pk else False
+
+        return has_permission

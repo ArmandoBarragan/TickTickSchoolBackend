@@ -10,7 +10,7 @@ from tick_tick_school.users.models import User
 
 class TasksTestCase(TestCase):
     def setUp(self):
-        """ Create database instances of every table"""
+        """ Create database instances of every table. """
         self.user = User.objects.create_user(
             email="abp@gmail.com",
             first_name="armando",

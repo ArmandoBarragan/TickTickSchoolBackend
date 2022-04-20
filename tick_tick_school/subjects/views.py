@@ -9,10 +9,17 @@ from .serializers import SubjectSerializer
 
 
 class SubjectViewSet(ModelViewSet):
-    permission_classes = [OwnerPermission]
     serializer_class = SubjectSerializer
 
+    def get_permissions(self):
+        if self.detail:
+            permission_classes = [OwnerPermission]
+        else:
+            permission_classes = [IsAuthenticated]
+        return [permission() for permission in permission_classes]
+
     def get_queryset(self):
+        """ A user can only get the subjects they created. """
         user = self.request.user
         if user.is_authenticated:
             return Subject.objects.filter(student=user)
