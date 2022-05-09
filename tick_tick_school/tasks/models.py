@@ -1,5 +1,7 @@
 from django.db import models
 
+from tick_tick_school.utils.base_model import Property
+
 
 class Task(models.Model):
     STATUS_LIST = [
@@ -13,6 +15,9 @@ class Task(models.Model):
     student = models.ForeignKey('users.User', on_delete=models.CASCADE, null=False)
     subject = models.ForeignKey('subjects.Subject', on_delete=models.SET_NULL, null=True, blank=True)
     status = models.CharField(max_length=100, choices=STATUS_LIST, default='pe', blank=True)
+
+    def get_owner(self):
+        return self.student
 
     def __str__(self):
         return '{} of {}'.format(self.name, self.student)

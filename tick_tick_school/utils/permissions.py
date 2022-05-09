@@ -14,7 +14,6 @@ def get_pk_from_path(path):
     path = path.replace('/', '')
     for url in urls:
         path = path.replace(url, '')
-    import pdb; pdb.set_trace()
     return int(path)
 
 
@@ -40,6 +39,6 @@ class OwnerPermission(BasePermission):
         if model == User:
             has_permission = True if instance.pk == user.pk else False
         else:
-            has_permission = True if instance.student.pk == user.pk else False
-
+            has_permission = True if instance.get_owner() == user else False
+        import pdb; pdb.set_trace()
         return has_permission
