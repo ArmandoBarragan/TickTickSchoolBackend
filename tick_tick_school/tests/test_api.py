@@ -1,6 +1,6 @@
 # DRF imports
 from rest_framework.test import APITestCase
-
+from rest_framework.authtoken.models import Token
 
 class TestAPI(APITestCase):
     def test_endpoints(self):
@@ -13,22 +13,13 @@ class TestAPI(APITestCase):
             'last_name': 'user'
         }
         user_response = self.client.post(
-            'http://testserver/users/',
+            'http://testserver/users/signup/',
             new_user
         )
-        self.assertEqual(len(user_response.data), 1)
-        token = user_response.data['user']
 
-        # Login
-        login_data = {
-            'username': 'user@gmail.com',
-            'password': 'super_pwd'
-        }
-        login_response = self.client.post(
-            'http://testserver/api-token-auth/',
-            json=login_data,
-            headers={'Authorization: Token {}'.format(token)}
-        )
+        self.assertEqual(user_response.status_code, 201, f'expected Response code 201, instead get {user_response.status_code}')
+
+        self.client.credentials(HTTP_AUTHORIZATION='Token ' + user_response.data['token'])
 
         # Subject
         subject_data = {
@@ -37,10 +28,11 @@ class TestAPI(APITestCase):
             'teacher': 'Carlos Rubio',
         }
         subject_response = self.client.post(
-            'http://testserver/subject/',
+            'http://testserver/subjects/',
             json=subject_data,
-            headers={'Authorization: Token {}'.format(token)}
         )
+
+        self.assertEqual(subject_response.status_code, 201)
 
         # Task
         task_data = {
@@ -50,12 +42,9 @@ class TestAPI(APITestCase):
             'description': 'Description 1'
         }
         task_response = self.client.post(
-            'http://testserver/task/',
+            'http://testserver/tasks/',
             json=task_data,
             headers={'Authorization: Token {}'.format(token)}
         )
 
-        assert user_response == 200
-        assert task_response.status_code == 200
-        assert subject_response == 200
-        assert login_response == 200
+        self.assertEqual(task_response.status_code, 201)
