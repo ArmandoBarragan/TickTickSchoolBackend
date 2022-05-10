@@ -30,3 +30,10 @@ class TaskViewSet(ModelViewSet):
         serialized_tasks = TaskSerializer(tasks, many=True)
 
         return Response(serialized_tasks, status=status.HTTP_200_OK)
+
+    def create(self, request, *args, **kwargs):
+        serializer = TaskSerializer(data=request.data)
+        if serializer.is_valid():
+            serializer.create(serializer.validated_data, self.request.headers['Authorization'])
+        else:
+            return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
