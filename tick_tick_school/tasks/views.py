@@ -33,7 +33,9 @@ class TaskViewSet(ModelViewSet):
 
     def create(self, request, *args, **kwargs):
         serializer = TaskSerializer(data=request.data)
+        token = request.headers['Authorization'].replace('Token ', '')
         if serializer.is_valid():
-            serializer.create(serializer.validated_data, self.request.headers['Authorization'])
+            created_object = serializer.save(serializer.validated_data, token)
+            return Response(TaskSerializer(created_object).data, status=status.HTTP_201_CREATED)
         else:
             return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)

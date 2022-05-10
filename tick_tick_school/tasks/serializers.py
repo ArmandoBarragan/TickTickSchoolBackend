@@ -16,8 +16,7 @@ class TaskSerializer(ModelSerializer):
             'id': {'read_only': True}
         }
 
-    def create(self, validated_data, token):
-        user = Token.objects.get(key=token).user
-        import pdb; pdb.set_trace()
-        validated_data.append('student', user)
-        return Task.objects.create()
+    def save(self, validated_data, token):
+        data_with_user = {'student': Token.objects.get(key=token).user}
+        data_with_user.update(validated_data)
+        return Task.objects.create(**data_with_user)

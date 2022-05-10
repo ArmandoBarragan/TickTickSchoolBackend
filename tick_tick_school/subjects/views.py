@@ -1,3 +1,4 @@
+import json
 # Drf imports
 from rest_framework.viewsets import ModelViewSet
 from rest_framework.permissions import IsAuthenticated
@@ -18,12 +19,12 @@ class SubjectViewSet(ModelViewSet):
         if not user.is_superuser:
             return Subject.objects.filter(student=user)
 
-    def create(self, request):
-        token = request.headers['Authorization'].remove('Token ')
+    def create(self, request, **kwargs):
+        token = request.headers['Authorization'].replace('Token ', '')
         serializer = SubjectSerializer(data=request.data)
 
         if serializer.is_valid():
             created_object = serializer.save(serializer.validated_data, token)
-            return Response(created_object, status=status.HTTP_201_CREATED)
+            return Response(SubjectSerializer(created_object).data, status=status.HTTP_201_CREATED)
         else:
             return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
