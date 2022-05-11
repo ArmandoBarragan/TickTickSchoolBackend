@@ -1,4 +1,3 @@
-import json
 # DRF Token
 from rest_framework.serializers import ModelSerializer
 from rest_framework.authtoken.models import Token
@@ -19,3 +18,9 @@ class SubjectSerializer(ModelSerializer):
         data_with_user = {'student': Token.objects.get(key=token).user}
         data_with_user.update(validated_data)
         return Subject.objects.create(**data_with_user)
+
+    def update(self, instance, validated_data, token, *args, **kwargs):
+        data_with_user = {'student': Token.objects.get(key=kwargs['token']).user}
+        data_with_user.update(instance.__dict__)
+        data_with_user.update(validated_data)
+        return Subject.objects.update(**data_with_user)

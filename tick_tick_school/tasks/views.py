@@ -39,3 +39,18 @@ class TaskViewSet(ModelViewSet):
             return Response(TaskSerializer(created_object).data, status=status.HTTP_201_CREATED)
         else:
             return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
+    def update(self, request, *args, **kwargs):
+        token = request.headers['Authorization'].replace('Token ', '')
+        instance = Task.objects.get(id=kwargs['pk'])
+        serializer = TaskSerializer(data=instance.__dict__)
+
+        if serializer.is_valid():
+            updated_object = serializer.update(
+                instance=instance,
+                validated_data=serializer.validated_data,
+                token=token
+            )
+            return Response(TaskSerializer(updated_object).data, status=status.HTTP_204_NO_CONTENT)
+        else:
+            return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
