@@ -19,8 +19,6 @@ class SubjectSerializer(ModelSerializer):
         data_with_user.update(validated_data)
         return Subject.objects.create(**data_with_user)
 
-    def update(self, instance, validated_data, token, *args, **kwargs):
-        data_with_user = {'student': Token.objects.get(key=kwargs['token']).user}
-        data_with_user.update(instance.__dict__)
-        data_with_user.update(validated_data)
-        return Subject.objects.update(**data_with_user)
+    def update(self, instance, validated_data, *args, **kwargs):
+        updated_object = Subject.objects.filter(pk=instance.pk).update(**validated_data)
+        return Subject.objects.get(pk=updated_object)
