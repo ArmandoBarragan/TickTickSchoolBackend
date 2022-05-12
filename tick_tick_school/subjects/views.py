@@ -34,6 +34,7 @@ class SubjectViewSet(ModelViewSet):
         instance_dict = instance.__dict__
         instance_dict.update(request.data)
         serializer = SubjectSerializer(data=instance_dict)
+
         if serializer.is_valid():
             updated_object = serializer.update(
                 instance=instance,

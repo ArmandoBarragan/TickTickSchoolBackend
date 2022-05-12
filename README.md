@@ -36,6 +36,7 @@ and use the following urls:</p>
     <li>api-token-auth to get the user's token.</li>
     <p>Parameters: Username and password</p>
     <p><b>KEEP IN MIND: This URL and parameters MIGHT BE CHANGED on future updates.</b></p>
+    <p>Note: This will return 404 if credentials are incorrect</p>
     <li>users/{{pk}} to get a user's email, firstname and lastnames</li>
     <li>users/ This does not work. It's only for staff, which has not been planned as a functionality yet.</li>
 </ul>
@@ -44,7 +45,7 @@ and use the following urls:</p>
     Subjects:
     <ul>
     <li>POST subjects/</li>
-    Parameters: (Being * a required param) name*, student*, teacher, classroom
+    Parameters: (Being * a required param) name*, teacher, classroom
     <li>GET subjects/ returns name, student, teacher, classroom.</li>
     </ul>
 </li>
@@ -52,7 +53,7 @@ and use the following urls:</p>
     Tasks:
     <ul>
     <li>POST tasks/</li>
-    Parameters: student*, name*, subject*, description, status.
+    Parameters: name*, subject*, description, status.
     If a status is not sent, it's set as 'pendiente' as default.
     </ul>
 </li>
