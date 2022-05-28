@@ -45,16 +45,20 @@ and use the following urls:</p>
     Subjects:
     <ul>
     <li>POST subjects/</li>
-    Parameters: (Being * a required param) name*, teacher, classroom
-    <li>GET subjects/ returns name, student, teacher, classroom.</li>
+    Parameters: (Being * a required param) name*, teacher, classroom.
+    <li></   
+    <li>GET subjects/ returns name, student, teacher, classroom of all user's subjects.</li>
+    <li>GET subjects/{subject_pk} returns name, student, teacher, classroom of a specific subject.</li>
     </ul>
 </li>
 <li>
     Tasks:
     <ul>
-    <li>POST tasks/</li>
-    Parameters: name*, subject*, description, status.
-    If a status is not sent, it's set as 'pendiente' as default.
+        <li>POST tasks/</li>
+        Parameters: name*, subject*, description, status.
+        If a status is not sent, it's set as 'pendiente' as default.
+        <li>GET tasks/ returns name, subject, description and status of all user's tasks.</li>
+        <li>GET tasks/{ task_pk } returns name, subject, description and status a specific task.</li>
     </ul>
 </li>
 </ul>
