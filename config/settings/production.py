@@ -26,3 +26,5 @@ USE_L10N = os.getenv('USE_L10N')
 USE_TZ = os.getenv('USE_TZ')
 
 DEBUG = True
+
+CORS_ORIGIN_WHITELIST = [os.getenv("WHITELIST")]
