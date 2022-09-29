@@ -2,6 +2,7 @@
 from rest_framework.test import APITestCase
 from rest_framework.authtoken.models import Token
 
+
 class TestAPI(APITestCase):
     def test_endpoints(self):
         # User
@@ -32,7 +33,7 @@ class TestAPI(APITestCase):
             json=subject_data,
         )
 
-        self.assertEqual(subject_response.status_code, 201)
+        self.assertEqual(subject_response.status_code, 201, subject_response.content)
 
         # Task
         task_data = {
