@@ -1,4 +1,5 @@
 <h1>Tick Tick School backend app</h1>
+Frontend repository: <a href="https://github.com/montesp/tick-tick-school-frontend">https://github.com/montesp/tick-tick-school-frontend</a>
 <h2>Project contributers</h2>
 <ul>
     <li><div>
@@ -20,7 +21,6 @@
             <span><strong>Github user:</strong> VCAngel</span><br/>
     </div></li>
 </ul>
-
 
 <h2>API usage</h2>
 <p>Models of the database are, at the moment, User, Task and Subject.
