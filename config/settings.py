@@ -1,17 +1,23 @@
 from pathlib import Path
+import os
 
 
 BASE_DIR = Path(__file__).resolve().parent.parent.parent
 
-# SECURITY WARNING: don't run with debug turned on in production!
+APPS_DIR = BASE_DIR / "app"
 
-APPS_DIR = BASE_DIR / "tick_tick_school"
+
+SECRET_KEY = os.getenv('SECRET_KEY')
+
+ALLOWED_HOSTS = [os.getenv('ALLOWED_HOSTS')]
+
+CORS_ORIGIN_WHITELIST = [os.getenv("WHITELIST")]
 
 # Apps
 PROJECT_APPS = [
-    'tick_tick_school.users.apps.UsersAppConfig',
-    'tick_tick_school.tasks.apps.TasksAppConfig',
-    'tick_tick_school.subjects.apps.SubjectsAppConfig'
+    'app.users.apps.UsersAppConfig',
+    'app.tasks.apps.TasksAppConfig',
+    'app.subjects.apps.SubjectsAppConfig'
 ]
 
 THIRD_PARTY_APPS = [
@@ -28,6 +34,18 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
 ] + THIRD_PARTY_APPS + PROJECT_APPS
+
+
+DATABASES = {
+    'default': {
+        'ENGINE': "django.db.backends.postgresql",
+        'NAME': os.getenv('DB_NAME'),
+        'USER': os.getenv('DB_USER'),
+        'PASSWORD': os.getenv('DB_PASSWORD'),
+        'HOST': os.getenv('PORT'),
+        'PORT': os.getenv('DB_PORT'),
+    }
+}
 
 
 MIDDLEWARE = [
@@ -92,3 +110,11 @@ REST_FRAMEWORK = {
         'rest_framework.authentication.TokenAuthentication',
     ]
 }
+
+LANGUAGE_CODE = 'es'
+TIME_ZONE = os.getenv('TIMEZONE')
+USE_I18N = os.getenv('USE_I18N')
+USE_L10N = os.getenv('USE_L10N')
+USE_TZ = os.getenv('USE_TZ')
+
+DEBUG = os.getenv("DEBUG")

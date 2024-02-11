@@ -2,5 +2,5 @@ from django.apps import AppConfig
 
 
 class SubjectsAppConfig(AppConfig):
-    name = 'tick_tick_school.subjects'
+    name = 'app.subjects'
     verbose_name = 'Subjects'

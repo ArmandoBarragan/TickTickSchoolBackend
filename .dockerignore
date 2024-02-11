@@ -1,2 +1,37 @@
-.sqlite
+# Exclude version control system directories
+.git
+.gitignore
+
+# Exclude Python virtual environment
+venv/
+*.pyc
 __pycache__/
+
+# Exclude database files
+*.sqlite3
+
+# Exclude media and static files
+media/
+static/
+
+# Exclude development and testing files
+*.log
+*.pot
+*.pyc
+*.swp
+.coverage
+.env
+htmlcov/
+.coverage
+.idea/
+*.egg-info/
+dist/
+build/
+*.tar.gz
+*.zip
+MANIFEST
+
+# Exclude Docker specific files
+.dockerignore
+Dockerfile
+docker-compose.yml

@@ -3,9 +3,9 @@ from django.test import TestCase
 from rest_framework.test import APIClient
 
 # Model imports
-from tick_tick_school.tasks.models import Task
-from tick_tick_school.subjects.models import Subject
-from tick_tick_school.users.models import User
+from app.tasks.models import Task
+from app.subjects.models import Subject
+from app.users.models import User
 
 
 class TasksTestCase(TestCase):

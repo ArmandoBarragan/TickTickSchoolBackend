@@ -1,0 +1,25 @@
+version: "3.3"
+
+services:
+  app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    volumes:
+      - .:/code/
+    env_file: ./example.env
+    restart: "always"
+    depends_on:
+      - db
+    links:
+      - db:db
+  db:
+    restart: always
+    image: postgres:latest
+    env_file: ./example.env
+    volumes:
+      - ./db:/docker-entrypoint-initdb.d
+      - local_postgres_data:/var/lib/postgresql/data
+
+volumes:
+  local_postgres_data: {}

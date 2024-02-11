@@ -3,6 +3,7 @@
 
 # Environment
 .env
+!example.env
 .venv
 env/
 venv/
@@ -57,4 +58,4 @@ celerybeat.pid
 db.sqlite3
 
 data/
-local.yml
+docker-compose.yml

@@ -2,5 +2,5 @@ from django.apps import AppConfig
 
 
 class UsersAppConfig(AppConfig):
-    name = 'tick_tick_school.users'
+    name = 'app.users'
     verbose_name = 'Users'
