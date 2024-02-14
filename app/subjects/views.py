@@ -22,7 +22,6 @@ class SubjectViewSet(ModelViewSet):
     def create(self, request, **kwargs):
         token = request.headers['Authorization'].replace('Token ', '')
         serializer = SubjectSerializer(data=request.data)
-
         if serializer.is_valid():
             created_object = serializer.save(serializer.validated_data, token)
             return Response(SubjectSerializer(created_object).data, status=status.HTTP_201_CREATED)
@@ -34,7 +33,6 @@ class SubjectViewSet(ModelViewSet):
         instance_dict = instance.__dict__
         instance_dict.update(request.data)
         serializer = SubjectSerializer(data=instance_dict)
-
         if serializer.is_valid():
             updated_object = serializer.update(
                 instance=instance,

@@ -5,12 +5,11 @@ services:
     build:
       context: .
       dockerfile: Dockerfile
+    command: ["./entrypoint.sh"]
     volumes:
       - static_files:/code/static/
     env_file: ./example.env
     restart: "always"
-    expose:
-      - 8000
     depends_on:
       - db
     links:

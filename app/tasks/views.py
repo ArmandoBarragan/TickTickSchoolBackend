@@ -19,9 +19,9 @@ class TaskViewSet(ModelViewSet):
         if user.is_authenticated:
             return Task.objects.filter(student=user.pk)
 
-    @action(detail=False,
-            methods=['GET'],
-            url_path='subjects/tasks/<int:searched_subject>')
+    @action(
+        detail=False, methods=['GET'], url_path='subjects/tasks/<int:searched_subject>'
+    )
     def get_tasks_by_subject(self, request, searched_subject, *args, **kwargs):
         user = request.user
         searched_subject = searched_subject
@@ -45,7 +45,6 @@ class TaskViewSet(ModelViewSet):
         instance_dict = instance.__dict__
         instance_dict.update(request.data)
         serializer = TaskSerializer(data=instance_dict)
-
         if serializer.is_valid():
             updated_object = serializer.update(
                 instance=instance,
