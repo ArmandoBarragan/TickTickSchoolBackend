@@ -13,11 +13,6 @@ ALLOWED_HOSTS = os.getenv('ALLOWED_HOSTS').split(",")
 
 CORS_ORIGIN_WHITELIST = os.getenv("WHITELIST").split(",")
 
-import logging
-logging.basicConfig(level=logging.DEBUG)  # Set the logging level to DEBUG
-
-logging.info(f"ALLOWED_HOSTS: {ALLOWED_HOSTS}\n")
-logging.info(f"WHITELIST: {CORS_ORIGIN_WHITELIST}")
 # Apps
 PROJECT_APPS = [
     'app.users.apps.UsersAppConfig',
@@ -104,7 +99,7 @@ AUTH_PASSWORD_VALIDATORS = [
 
 
 STATIC_URL = 'static/'
-
+STATIC_ROOT = os.path.join("static")
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 # User settings
