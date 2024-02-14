@@ -58,5 +58,4 @@ celerybeat.pid
 db.sqlite3
 
 data/
-docker-compose.yml
 static/
