@@ -9,10 +9,15 @@ APPS_DIR = BASE_DIR / "app"
 
 SECRET_KEY = os.getenv('SECRET_KEY')
 
-ALLOWED_HOSTS = [os.getenv('ALLOWED_HOSTS')]
+ALLOWED_HOSTS = os.getenv('ALLOWED_HOSTS').split(",")
 
 CORS_ORIGIN_WHITELIST = [os.getenv("WHITELIST")]
 
+import logging
+logging.basicConfig(level=logging.DEBUG)  # Set the logging level to DEBUG
+
+logging.info(f"ALLOWED_HOSTS: {ALLOWED_HOSTS}\n")
+logging.info(f"WHITELIST: {CORS_ORIGIN_WHITELIST}")
 # Apps
 PROJECT_APPS = [
     'app.users.apps.UsersAppConfig',
@@ -39,11 +44,11 @@ INSTALLED_APPS = [
 DATABASES = {
     'default': {
         'ENGINE': "django.db.backends.postgresql",
-        'NAME': os.getenv('DB_NAME'),
-        'USER': os.getenv('DB_USER'),
-        'PASSWORD': os.getenv('DB_PASSWORD'),
-        'HOST': os.getenv('PORT'),
-        'PORT': os.getenv('DB_PORT'),
+        'NAME': os.getenv('DATABASE_NAME'),
+        'USER': os.getenv('DATABASE_USER'),
+        'PASSWORD': os.getenv('DATABASE_PASSWORD'),
+        'HOST': os.getenv('DATABASE_HOST'),
+        'PORT': os.getenv('DATABASE_PORT'),
     }
 }
 

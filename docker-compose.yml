@@ -9,6 +9,8 @@ services:
       - .:/code/
     env_file: ./example.env
     restart: "always"
+    expose:
+      - 8000
     depends_on:
       - db
     links:
@@ -20,6 +22,16 @@ services:
     volumes:
       - ./db:/docker-entrypoint-initdb.d
       - local_postgres_data:/var/lib/postgresql/data
+
+  nginx:
+    restart: always
+    build:
+      dockerfile: ./nginx/Dockerfile
+    env_file: example.env
+    ports:
+      - "80:80"
+    depends_on:
+      - app
 
 volumes:
   local_postgres_data: {}

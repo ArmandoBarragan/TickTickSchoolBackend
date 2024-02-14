@@ -21,6 +21,7 @@ static/
 *.swp
 .coverage
 .env
+!example.env
 htmlcov/
 .coverage
 .idea/
