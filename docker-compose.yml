@@ -15,6 +15,7 @@ services:
       - db
     links:
       - db:db
+
   db:
     restart: always
     image: postgres:latest

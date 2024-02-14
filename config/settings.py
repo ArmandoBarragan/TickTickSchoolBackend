@@ -11,7 +11,7 @@ SECRET_KEY = os.getenv('SECRET_KEY')
 
 ALLOWED_HOSTS = os.getenv('ALLOWED_HOSTS').split(",")
 
-CORS_ORIGIN_WHITELIST = [os.getenv("WHITELIST")]
+CORS_ORIGIN_WHITELIST = os.getenv("WHITELIST").split(",")
 
 import logging
 logging.basicConfig(level=logging.DEBUG)  # Set the logging level to DEBUG
