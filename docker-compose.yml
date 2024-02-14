@@ -6,7 +6,7 @@ services:
       context: .
       dockerfile: Dockerfile
     volumes:
-      - .:/code/
+      - static_files:/code/static/
     env_file: ./example.env
     restart: "always"
     expose:
@@ -35,6 +35,9 @@ services:
       - "80:80"
     depends_on:
       - app
+    volumes:
+      - static_files:/static/
 
 volumes:
   local_postgres_data: {}
+  static_files:

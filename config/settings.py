@@ -2,7 +2,7 @@ from pathlib import Path
 import os
 
 
-BASE_DIR = Path(__file__).resolve().parent.parent.parent
+BASE_DIR = Path(__file__).resolve().parent.parent
 
 APPS_DIR = BASE_DIR / "app"
 
@@ -99,7 +99,8 @@ AUTH_PASSWORD_VALIDATORS = [
 
 
 STATIC_URL = 'static/'
-STATIC_ROOT = os.path.join("static")
+STATIC_ROOT = os.path.join(BASE_DIR, "static")
+
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 # User settings
