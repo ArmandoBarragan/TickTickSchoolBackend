@@ -1,17 +1,21 @@
 from pathlib import Path
 import os
-
+from decouple import (
+    config,
+    Csv,
+)
 
 BASE_DIR = Path(__file__).resolve().parent.parent
 
 APPS_DIR = BASE_DIR / "app"
 
+SECRET_KEY = config('SECRET_KEY')
 
-SECRET_KEY = os.getenv('SECRET_KEY')
+DEBUG = config("DEBUG", cast=bool)
 
-ALLOWED_HOSTS = os.getenv('ALLOWED_HOSTS').split(",")
+ALLOWED_HOSTS = config('ALLOWED_HOSTS', cast=Csv())
 
-CORS_ORIGIN_WHITELIST = os.getenv("WHITELIST").split(",")
+CORS_ORIGIN_WHITELIST = config("WHITELIST", cast=Csv())
 
 # Apps
 PROJECT_APPS = [
@@ -39,11 +43,11 @@ INSTALLED_APPS = [
 DATABASES = {
     'default': {
         'ENGINE': "django.db.backends.postgresql",
-        'NAME': os.getenv('DATABASE_NAME'),
-        'USER': os.getenv('DATABASE_USER'),
-        'PASSWORD': os.getenv('DATABASE_PASSWORD'),
-        'HOST': os.getenv('DATABASE_HOST'),
-        'PORT': os.getenv('DATABASE_PORT'),
+        'NAME': config('DATABASE_NAME'),
+        'USER': config('DATABASE_USER'),
+        'PASSWORD': config('DATABASE_PASSWORD'),
+        'HOST': config('DATABASE_HOST'),
+        'PORT': config('DATABASE_PORT'),
     }
 }
 
@@ -113,9 +117,7 @@ REST_FRAMEWORK = {
 }
 
 LANGUAGE_CODE = 'es'
-TIME_ZONE = os.getenv('TIMEZONE')
-USE_I18N = os.getenv('USE_I18N')
-USE_L10N = os.getenv('USE_L10N')
-USE_TZ = os.getenv('USE_TZ')
-
-DEBUG = os.getenv("DEBUG")
+TIME_ZONE = config('TIMEZONE')
+USE_I18N = config('USE_I18N', cast=bool)
+USE_L10N = config('USE_L10N', cast=bool)
+USE_TZ = config('USE_TZ', cast=bool)
