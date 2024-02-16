@@ -1,6 +1,5 @@
 # Test imports
 from django.test import TestCase
-from rest_framework.test import APIClient
 
 # Model imports
 from app.tasks.models import Task
