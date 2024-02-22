@@ -1,21 +1,21 @@
 apiVersion: v1
 kind: ConfigMap
 metadata:
-  name: tick-tick-school
+  name: tts-web-configmap
 data:
-  PORT: 8000
-  DEGUB: TRUE
-  TIMEZONE: America/Mexico_City
-  USE_I18N: TRUE
-  USE_L10N: TRUE
-  USE_TZ: TRUE
-  WHITELIST: http://0.0.0.0
-  ALLOWED_HOSTS: 0.0.0.0,localhost
-  HOST: 0.0.0.0
-  DATABASE_NAME: tts_db
-  DATABASE_USER: postgres
-  DATABASE_PASSWORD: postgres
-  DATABASE_HOST: db
-  DATABASE_PORT: 5432
-  POSTGRES_USER: postgres
-  POSTGRES_DB: tts_db
+  PORT: "8000"
+  DEBUG: "TRUE"
+  TIMEZONE: "America/Mexico_City"
+  USE_I18N: "TRUE"
+  USE_L10N: "TRUE"
+  USE_TZ: "TRUE"
+  WHITELIST: "http://0.0.0.0"
+  ALLOWED_HOSTS: "0.0.0.0,localhost"
+  HOST: "0.0.0.0"
+  DATABASE_NAME: "tts_db"
+  DATABASE_USER: "postgres"
+  DATABASE_PASSWORD: "postgres"
+  DATABASE_HOST: "db"
+  DATABASE_PORT: "5432"
+  POSTGRES_USER: "postgres"
+  POSTGRES_DB: "tts_db"

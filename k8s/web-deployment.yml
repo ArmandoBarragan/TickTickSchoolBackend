@@ -1,39 +1,28 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: tick-tick-school-app
+  name: tts-web-deployment
   labels:
     app: tick-tick-school
 spec:
-  replicas: 2
+  replicas: 1
   selector:
     matchLabels:
-      app: tick-tick-school
+      app: web-app
   template:
     metadata:
       labels:
-        app: tick-tick-school
+        app: web-app
     spec:
       containers:
         - image: armandobarragan/tick-tick-school-web:v1.0.0
           name: app
+          command: ["./entrypoint.sh"]
           envFrom:
           - secretRef:
               name: tick-tick-school-secret
           - configMapRef:
-              name: web-configmap.yml
+              name: tts-web-configmap
           ports:
             - containerPort: 8000
               name: gunicorn
-        - image: armandobarragan/tick-tick-school-nginx:v1.0.0
-          name: nginx
-        - image: postgres:latest
-          name: db
-          envFrom:
-            - secretRef:
-                name: tick-tick-school-secret
-            - configMapRef:
-                name: web-configmap.yml
-          ports:
-            - containerPort: 5432
-              name: db

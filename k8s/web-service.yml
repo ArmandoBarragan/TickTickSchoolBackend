@@ -1,0 +1,11 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: tts-web-service
+spec:
+  selector:
+    app: tick-tick-school
+  ports:
+    - protocol: TCP
+      port: 8000
+      targetPort: 8000
