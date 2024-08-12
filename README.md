@@ -14,12 +14,6 @@ Frontend repository: <a href="https://github.com/montesp/tick-tick-school-fronte
             <span><strong>Email:</strong> pavelmontes22@gmail.com</span><br/>
             <span><strong>Github user:</strong> montesp</span><br/>
     </div></li>
-    <li><div>
-            <span>Angel Vargas Casavantes.</span><br/>
-            <span><strong>Role:</strong> Frontend developer.</span><br/>
-            <span><strong>Email:</strong> vcangel00@gmail.com</span><br/>
-            <span><strong>Github user:</strong> VCAngel</span><br/>
-    </div></li>
 </ul>
 
 <h2>API usage</h2>
